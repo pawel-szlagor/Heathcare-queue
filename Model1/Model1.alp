@@ -334,6 +334,27 @@
 					<HighPercent>10</HighPercent>
 					<Title><![CDATA[]]></Title>
 				</HistogramData>
+    			<Statistics>
+					<Id>1448898719642</Id>
+					<Name><![CDATA[ExamineTime]]></Name>
+					<X>530</X><Y>30</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<AutoUpdate>true</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1448956800000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[MINUTE]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[MINUTE]]></Unit>
+					</RecurrenceCode>
+					<Discrete>true</Discrete>
+				</Statistics>
 			</AnalysisData>
 			<AgentLinks>
 				<AgentLink>
@@ -641,6 +662,9 @@
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[entityLocation]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[path]]></Code>
+							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[queuing]]></Name>
@@ -674,9 +698,6 @@
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[forceStatisticsCollection]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[true]]></Code>
-							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[onEnter]]></Name>
@@ -827,7 +848,6 @@ waitTimeCITO.add(agent.endWaiting - agent.startWaiting);]]></Code>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<PresentationId>1448821656131</PresentationId>
 					<ActiveObjectClass>
 						<PackageName><![CDATA[model]]></PackageName>
 						<ClassName><![CDATA[Chory]]></ClassName>
@@ -946,30 +966,9 @@ waitTimeCITO.add(agent.endWaiting - agent.startWaiting);]]></Code>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[delayTime]]></Name>
-							<Value Class="DatabaseQueryCodeUnitValue">
-								<Value Class="DatabaseQueryCodeValue">
-									<Type>SELECT_UNIQUE_VALUE</Type>
-									<TableReference>
-										<PackageName><![CDATA[model]]></PackageName>
-										<ClassName><![CDATA[ilosc_sekwencji]]></ClassName>
-									</TableReference>
-									<Condition>
-										<ColumnReference>
-											<PackageName><![CDATA[model]]></PackageName>
-											<ClassName><![CDATA[ilosc_sekwencji]]></ClassName>
-											<ItemName><![CDATA[body_part]]></ItemName>
-										</ColumnReference>
-										<Value Class="CodeValue">
-											<Code><![CDATA[agent.body_part]]></Code>
-										</Value>
-									</Condition>
-									<ColumnReference>
-										<PackageName><![CDATA[model]]></PackageName>
-										<ClassName><![CDATA[ilosc_sekwencji]]></ClassName>
-										<ItemName><![CDATA[examine_time]]></ItemName>
-									</ColumnReference>
-								</Value>
-								<Unit Class="TimeUnits"><![CDATA[MINUTE]]></Unit>;
+							<Value Class="CodeUnitValue">
+								<Code><![CDATA[agent.getRandomExamineTime();]]></Code>
+								<Unit Class="TimeUnits"><![CDATA[MINUTE]]></Unit>
 							</Value>
 						</Parameter>
 						<Parameter>
@@ -980,6 +979,9 @@ waitTimeCITO.add(agent.endWaiting - agent.startWaiting);]]></Code>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[entityLocation]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[analysePoint]]></Code>
+							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[pushProtocol]]></Name>
@@ -1577,26 +1579,83 @@ waitTimeCITO.add(agent.endWaiting - agent.startWaiting);]]></Code>
 					<Latitude>0.0</Latitude>
 					<Longitude>0.0</Longitude>
 				</EmbeddedObjectPresentation>
-				<EmbeddedObjectPresentation>
-					<Id>1448821656131</Id>
-					<Name><![CDATA[chory_presentation]]></Name>
-					<X>0</X><Y>0</Y>
+				<Network>
+					<Id>1448895612023</Id>
+					<Name><![CDATA[network]]></Name>
+					<X>70</X><Y>370</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<AsObject>true</AsObject>
-					<EmbeddedIcon>false</EmbeddedIcon>
+
+			<Shapes>
+				<PointNode>
+					<Id>1448895583649</Id>
+					<Name><![CDATA[sourcePoint]]></Name>
+					<X>70</X><Y>370</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<DrawingMode>AGENT_CURRENT_POSITION</DrawingMode>
-					<ScaleType>AUTOMATICALLY_CALCULATED</ScaleType>
-					<GISScaleForRealEmbeddedObjectPresentationSize>1000</GISScaleForRealEmbeddedObjectPresentationSize>
-					<GISScaleForFixedEmbeddedObjectPresentationSize>1000000000</GISScaleForFixedEmbeddedObjectPresentationSize>
-					<Latitude>0.0</Latitude>
-					<Longitude>0.0</Longitude>
-				</EmbeddedObjectPresentation>
+					<FakeNode>false</FakeNode>	
+					<Lock>false</Lock>
+					<Color>-14774017</Color>
+					<Radius>1</Radius>
+				</PointNode>
+				<Path SourceId="1448895583649" TargetId="1448895694193">
+					<Id>1448895610168</Id>
+					<Name><![CDATA[path]]></Name>
+					<X>70</X><Y>370</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<Z>0</Z>
+					<LineColor>-14774017</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineWidth>2</LineWidth>
+					<PathType>dashedLine</PathType>
+					<Width>10</Width>
+					<Points>
+						<Point><X>0</X><Y>0</Y><Z>0</Z></Point>
+						<Point><X>24.254</X><Y>-6.063</Y><Z>0</Z></Point>
+						<Point><X>25</X><Y>0</Y><Z>0</Z></Point>
+						<Point><X>170</X><Y>0</Y><Z>0</Z></Point>
+						<Point><X>145</X><Y>0</Y><Z>0</Z></Point>
+						<Point><X>179.848</X><Y>-22.979</Y><Z>0</Z></Point>
+						<Point><X>200</X><Y>-70</Y><Z>0</Z></Point>
+						<Point><X>190.152</X><Y>-47.021</Y><Z>0</Z></Point>
+						<Point><X>225</X><Y>-70</Y><Z>0</Z></Point>
+						<Point><X>380</X><Y>-70</Y><Z>0</Z></Point>
+						<Point><X>355</X><Y>-70</Y><Z>0</Z></Point>
+						<Point><X>180</X><Y>-70</Y><Z>0</Z></Point>
+					</Points>
+					<Bidirectional>true</Bidirectional>
+				</Path>
+				<PointNode>
+					<Id>1448895694193</Id>
+					<Name><![CDATA[analysePoint]]></Name>
+					<X>450</X><Y>300</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<Z>0</Z>
+					<FakeNode>false</FakeNode>	
+					<Lock>false</Lock>
+					<Color>-16711681</Color>
+					<ColorCode><![CDATA[analiza.size() > 0 ? red : green]]></ColorCode>
+					<Radius>1</Radius>
+				</PointNode>
+			</Shapes>
+
+					<Z>0</Z>
+				</Network>
 			</Shapes>
 			<Charts>
     			<Histogram>
@@ -1763,7 +1822,13 @@ String SELECT_EXAMINETIME_PATTERN = "SELECT examine_time FROM ilosc_sekwencji wh
 return selectUniqueValue(SELECT_EXAMINETIME_PATTERN, this.body_part);
 }
 
-]]></AdditionalClassCode>
+double getRandomExamineTime(){
+double meanTime = selectFrom(ilosc_sekwencji)
+	.where(ilosc_sekwencji.body_part.eq(this.body_part))
+	.uniqueResult(ilosc_sekwencji.examine_time, double.class);
+	double delta = 10;
+	return triangular(meanTime-delta, meanTime, meanTime+2*delta);
+}]]></AdditionalClassCode>
 			<ClientAreaTopLeft><X>0</X><Y>0</Y></ClientAreaTopLeft>
 			<PresentationTopGroupPersistent>true</PresentationTopGroupPersistent>
 			<IconTopGroupPersistent>true</IconTopGroupPersistent>
@@ -1927,7 +1992,7 @@ return selectUniqueValue(SELECT_EXAMINETIME_PATTERN, this.body_part);
 				<Function AccessType="public" StaticFunction="false">
 					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 					<ReturnType><![CDATA[String]]></ReturnType>
-					<Id>1448820121051</Id>
+					<Id>1448897334511</Id>
 					<Name><![CDATA[toString]]></Name>
 					<X>-100</X><Y>50</Y>
 					<Label><X>10</X><Y>0</Y></Label>
@@ -1935,7 +2000,9 @@ return selectUniqueValue(SELECT_EXAMINETIME_PATTERN, this.body_part);
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Body><![CDATA[return
-	"isCITORequired = " + isCITORequired + ", " +
+	"startWaiting = " + startWaiting + "\n" +
+	"endWaiting = " + endWaiting + "\n" +
+	"isCITORequired = " + isCITORequired + "\n" +
 	"body_part = " + body_part;]]></Body>
 				</Function>
 			</Functions>
