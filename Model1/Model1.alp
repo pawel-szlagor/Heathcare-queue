@@ -4,7 +4,7 @@
 	         AnyLogic Project File 
 *************************************************	         
 -->
-<AnyLogicWorkspace WorkspaceVersion="1.9" AnyLogicVersion="7.2.0.201510071615" AlpVersion="7.2.5">
+<AnyLogicWorkspace WorkspaceVersion="1.9" AnyLogicVersion="7.2.0.201510071634" AlpVersion="7.2.5">
 <Model>
 	<Id>1448734391708</Id>
 	<Name><![CDATA[Model1]]></Name>
@@ -1828,6 +1828,12 @@ double meanTime = selectFrom(ilosc_sekwencji)
 	.uniqueResult(ilosc_sekwencji.examine_time, double.class);
 	double delta = 10;
 	return triangular(meanTime-delta, meanTime, meanTime+2*delta);
+}
+
+boolean getCITO(){
+String SELECT_CITO_PATTERN = "SELECT value FROM properties where name = ?";
+double probabilityLimit = selectUniqueValue(SELECT_CITO_PATTERN, "CITOProbability");
+return  new Random().nextDouble() < probabilityLimit;
 }]]></AdditionalClassCode>
 			<ClientAreaTopLeft><X>0</X><Y>0</Y></ClientAreaTopLeft>
 			<PresentationTopGroupPersistent>true</PresentationTopGroupPersistent>
@@ -1950,7 +1956,7 @@ double meanTime = selectFrom(ilosc_sekwencji)
 						<NumericType><![CDATA[double]]></NumericType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[new Random().nextDouble() > 0.90]]></Code>
+							<Code><![CDATA[getCITO()]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>0</Id>
